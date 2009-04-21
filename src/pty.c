@@ -474,7 +474,7 @@ _vte_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 			fprintf(stderr, "Parent received child-ready.\n");
 		}
 #endif
-		_vte_pty_set_size(parent_fd, columns, rows);
+		_pty_sharp_set_size(parent_fd, columns, rows);
 #ifdef VTE_DEBUG
 		if (_vte_debug_on(VTE_DEBUG_PTY)) {
 			fprintf(stderr, "Parent sending parent-ready.\n");
@@ -585,7 +585,7 @@ _vte_pty_fork_on_pty_fd(int fd, char **env_add,
 			fprintf(stderr, "Parent received child-ready.\n");
 		}
 #endif
-		_vte_pty_set_size(fd, columns, rows);
+		_pty_sharp_set_size(fd, columns, rows);
 #ifdef VTE_DEBUG
 		if (_vte_debug_on(VTE_DEBUG_PTY)) {
 			fprintf(stderr, "Parent sending parent-ready.\n");
@@ -603,7 +603,7 @@ _vte_pty_fork_on_pty_fd(int fd, char **env_add,
 }
 
 /**
- * vte_pty_set_size:
+ * _pty_sharp_set_size:
  * @master: the file descriptor of the pty master
  * @columns: the desired number of columns
  * @rows: the desired number of rows

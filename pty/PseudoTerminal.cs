@@ -1,3 +1,13 @@
+//
+// PseudoTerminal.cs: A managed binding to create Unix Psuedo Terminals
+//
+// Author: Miguel de Icaza (miguel@gnome.org)
+//
+// Copyright 2009, Novell, Inc.
+//
+// This code is licensed under the MIT X11 license, but the library
+// it P/Invokes is LGPL v2
+//
 using System;
 using System.Runtime.InteropServices;
 
@@ -5,7 +15,7 @@ namespace Unix {
 
 	public class PseudoTerminal : IDisposable {
 		[DllImport ("ptysharp.so.0")]
-		extern static int _vte_pty_open (out int pid_t_child,
+		extern static int _pty_sharp_open (out int pid_t_child,
 						 string [] env_add,
 						 string command,
 						 string [] argv,
@@ -16,16 +26,16 @@ namespace Unix {
 						 int wtmp);
 
 		[DllImport ("ptysharp.so.0")]
-		extern static int _vte_pty_get_size (int master, out int columns, out int rows);
+		extern static int _pty_sharp_get_size (int master, out int columns, out int rows);
 		
 		[DllImport ("ptysharp.so.0")]
-		extern static int _vte_pty_set_size (int master, int columns, int rows);
+		extern static int _pty_sharp_set_size (int master, int columns, int rows);
 
 		[DllImport ("ptysharp.so.0")]
-		extern static void _vte_pty_set_utf8 (int pty, int utf8);
+		extern static void _pty_sharp_set_utf8 (int pty, int utf8);
 
 		[DllImport ("ptysharp.so.0")]
-		extern static void _vte_pty_close(int pty);
+		extern static void _pty_sharp_close(int pty);
 
 		int fd;
 		int child_pid;
@@ -50,7 +60,7 @@ namespace Unix {
 		{
 			int child_pid, fd;
 			
-			fd = _vte_pty_open (out child_pid, env_add, command, argv, dir, columns, rows, lastlog ? 1 : 0, utmp ? 1 : 0, wtmp ? 1 : 0);
+			fd = _pty_sharp_open (out child_pid, env_add, command, argv, dir, columns, rows, lastlog ? 1 : 0, utmp ? 1 : 0, wtmp ? 1 : 0);
 			if (fd == -1)
 				return null;
 
@@ -62,17 +72,17 @@ namespace Unix {
 		//
 		public bool GetSize (out int cols, out int rows)
 		{
-			return _vte_pty_get_size (fd, out cols, out rows) == 0;
+			return _pty_sharp_get_size (fd, out cols, out rows) == 0;
 		}
 
 		public bool SetSize (int cols, int rows)
 		{
-			return _vte_pty_set_size (fd, cols, rows) == 0;
+			return _pty_sharp_set_size (fd, cols, rows) == 0;
 		}
 
 		public void SetUTF8 (bool status)
 		{
-			_vte_pty_set_utf8 (fd, status ? 1 : 0);
+			_pty_sharp_set_utf8 (fd, status ? 1 : 0);
 		}
 
 		public void Dispose()
@@ -86,7 +96,7 @@ namespace Unix {
 		{
 			if (fd == -1)
 				return;
-			_vte_pty_close (fd);
+			_pty_sharp_close (fd);
 			fd = -1;
 		}
 
