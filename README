@@ -1,0 +1,12 @@
+
+This library provides a managed binding to create Unix
+pseudo-terminals (ptys) using Mono on a variety of operating systems.
+
+It uses the vte code to create pseudo terminals and the
+gnome-pty-helper program to provide proper login and pseudo terminal
+creation (turned off by default, by default it tries to use a
+system-provided gnome-pty-helper).
+
+The API is in pty-sharp.dll in the Unix.PseudoTerminal namespace.
+
+Miguel (miguel@gnome.org)

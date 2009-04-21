@@ -1,0 +1,9 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: pty-sharp
+Description: A Mono binding for CLI applications to control pseudo terminals on Unix
+Version: @VERSION@
+Libs: -r:${prefix}/lib/mono/unix/pty-sharp.dll

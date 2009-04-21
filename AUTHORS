@@ -1,0 +1,3 @@
+The code in src/pty.* comes from the VTE package, which is derived from ZVT.
+
+The C# binding is from Miguel de Icaza
