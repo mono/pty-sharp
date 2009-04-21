@@ -18,6 +18,7 @@ class X {
 					       "/tmp",
 					       80, 24, false, false, false);
 
+		var x = Console.ForegroundColor;
 
 		//
 		// OK, this is a disgusting hack (2 threads instead of non-blocking
