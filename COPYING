@@ -1,6 +1,12 @@
 
-The C# code is licensed under the terms of the MIT X11 license.
+Code that you link with your application:
 
-The code in src/pty.* is taken from VTE and is licensed under the LGPL v2 or later licenses.
+     The C# code is licensed under the terms of the MIT X11 license.
 
-The code in gnome-pty-helper is GPLv2
+     The code in src/pty.* is taken from VTE and is licensed under the
+     LGPL v2 or later licenses.
+
+Optional Helper tools that assist the pty book-keeping (recording a
+new session for "who"), this is an external tool:
+
+     The code in gnome-pty-helper is GPLv2
